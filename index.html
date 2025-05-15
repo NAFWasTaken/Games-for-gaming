@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NAFWasTaken's Unblocked Games</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+    header {
+      background-color: #2c2c2c;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    #search-container {
+      display: flex;
+      justify-content: center;
+      margin: 1rem;
+    }
+    #search-input {
+      width: 80%;
+      max-width: 500px;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+    #game-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .game-card {
+      background-color: #2c2c2c;
+      border-radius: 8px;
+      margin: 1rem;
+      width: 200px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .game-card:hover {
+      transform: scale(1.05);
+    }
+    .game-card img {
+      width: 100%;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    .game-card .game-title {
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: bold;
+    }
+    #game-container {
+      display: none;
+      padding: 1rem;
+      text-align: center;
+    }
+    #game-frame-container iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      max-width: 100%;
+    }
+    #back-button, #fullscreen-button {
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #back-button:hover, #fullscreen-button:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>NAFWasTaken's Unblocked Games</header>
+  
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Search games...">
+  </div>
+  
+  <div id="game-list"></div>
+
+  <div id="game-container">
+    <button id="back-button">Back to Game List</button>
+    <button id="fullscreen-button">Fullscreen</button>
+    <div id="game-frame-container"></div>
+  </div>
+
+  <script>
+    const gameListEl = document.getElementById('game-list');
+    const gameContainerEl = document.getElementById('game-container');
+    const gameFrameContainer = document.getElementById('game-frame-container');
+    const backButtonEl = document.getElementById('back-button');
+    const fullscreenButtonEl = document.getElementById('fullscreen-button');
+    const searchInputEl = document.getElementById('search-input');
+
+    const gamesJsonUrl = 'https://raw.githubusercontent.com/NAFWasTaken/Unblocked-Games-CDN/main/games.json';
+    let gamesData = [];
+
+    function renderGames(filteredGames) {
+      gameListEl.innerHTML = '';
+      filteredGames.forEach(game => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+          <img src="${game.game_image_icon}" alt="${game.name} Thumbnail">
+          <div class="game-title">${game.name}</div>
+        `;
+        card.addEventListener('click', () => {
+          gameListEl.style.display = 'none';
+          document.getElementById('search-container').style.display = 'none';
+          gameContainerEl.style.display = 'block';
+          gameFrameContainer.innerHTML = game.iframe;
+        });
+        gameListEl.appendChild(card);
+      });
+    }
+
+    fetch(gamesJsonUrl)
+      .then(response => response.json())
+      .then(games => {
+        gamesData = games;
+        renderGames(gamesData);
+      })
+      .catch(error => {
+        console.error('Error loading games:', error);
+        gameListEl.innerHTML = '<p>Failed to load games.</p>';
+      });
+
+    backButtonEl.addEventListener('click', () => {
+      gameFrameContainer.innerHTML = '';
+      gameContainerEl.style.display = 'none';
+      gameListEl.style.display = 'flex';
+      document.getElementById('search-container').style.display = 'flex';
+    });
+
+    fullscreenButtonEl.addEventListener('click', () => {
+      const iframe = gameFrameContainer.querySelector('iframe');
+      if (iframe) {
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) {
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) {
+          iframe.msRequestFullscreen();
+        }
+      }
+    });
+
+    searchInputEl.addEventListener('input', () => {
+      const query = searchInputEl.value.toLowerCase();
+      const filtered = gamesData.filter(game =>
+        game.name.toLowerCase().includes(query)
+      );
+      renderGames(filtered);
+    });
+  </script>
+</body>
+</html>
