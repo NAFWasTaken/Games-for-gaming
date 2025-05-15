@@ -21,16 +21,29 @@
     #search-container {
       display: flex;
       justify-content: center;
+      align-items: center;
       margin: 1rem;
+      gap: 0.5rem;
     }
     #search-input {
-      width: 80%;
+      flex: 1;
       max-width: 500px;
       padding: 0.5rem;
       font-size: 1rem;
       border-radius: 5px;
       border: none;
       outline: none;
+    }
+    #proxy-button, #cloak-button {
+      padding: 0.5rem 1rem;
+      background-color: #444;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #proxy-button:hover, #cloak-button:hover {
+      background-color: #666;
     }
     #game-list {
       display: flex;
@@ -86,11 +99,13 @@
 </head>
 <body>
   <header>NAFWasTaken's Unblocked Games</header>
-  
+
   <div id="search-container">
+    <button id="proxy-button">Proxy Menu</button>
     <input type="text" id="search-input" placeholder="Search games...">
+    <button id="cloak-button">Cloak</button>
   </div>
-  
+
   <div id="game-list"></div>
 
   <div id="game-container">
@@ -166,6 +181,17 @@
         game.name.toLowerCase().includes(query)
       );
       renderGames(filtered);
+    });
+
+    document.getElementById('cloak-button').addEventListener('click', () => {
+      const url = window.location.href;
+      const win = window.open();
+      win.document.write(`<iframe src="${url}" style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;"></iframe>`);
+      win.document.title = "Loading...";
+    });
+
+    document.getElementById('proxy-button').addEventListener('click', () => {
+      window.location.href = "/proxy.html";
     });
   </script>
 </body>
