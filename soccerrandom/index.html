@@ -1,41 +1,38 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/footer.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4874616183592939"
-     crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="🕹Opium Games is a free unblocked games service hosting over 100+ unblocked games, also includes many selectable proxies and emulators to use along with tab cloakers and history hiders! 🎮">
-    <meta name="author" content="CybriaTech">
-    <meta name="keywords" content="games, unblocked games, unblocked games, video games, unity, webgl, swf, html5, cybriagames, cybriagames sequel, emulators">
-    <link rel="stylesheet" href="css/header.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link rel="icon" href="images/logo/favi/logo-16x16.png" sizes="16x16">
-    <link rel="icon" href="images/logo/favi/logo-32x32.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="images/logo/favi/apple-touch-icon.png" sizes="180x180">
-    <title>Soccer Random | Opium</title>
-    <link rel="stylesheet" href="css/index.css">
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-20CSCVKLF3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-20CSCVKLF3');
-</script>
-</head>
-<body style="overflow: hidden;">
-  <main>
-          <iframe src="game.html" style="width: 100vw; height: 100vh;"></iframe>
-  </main>
-<script>
-var elem = document.querySelector('.grid');
-var msnry = new Masonry( elem, {
-  itemSelector: '.grid-item',
-  columnWidth: 200
-});
-</script>
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Soccer Random | 3kh0</title>
+    <link rel="icon" type="image/png" href="splash.png" />
+    <script type="text/javascript" src="/js/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link rel="manifest" href="appmanifest.json" />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      window.addEventListener(
+        "keydown",
+        function (e) {
+          // space and arrow keys
+          if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+            e.preventDefault();
+          }
+        },
+        false
+      );
+    </script>
+  </head>
+  <body>
+    <script src="box2d.wasm.js"></script>
+    <noscript>
+      <div id="notSupportedWrap">
+        <h2 id="notSupportedTitle">This content requires JavaScript</h2>
+        <p class="notSupportedMessage">JavaScript appears to be disabled. Please enable it to view this content.</p>
+        <p class="notSupportedMessage">This content was created in Construct 3. <a href="https://www.construct.net/en">Create games online</a></p>
+      </div>
+    </noscript>
+    <script src="scripts/supportcheck.js"></script>
+    <script src="scripts/offlineclient.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/register-sw.js"></script>
+  </body>
 </html>
