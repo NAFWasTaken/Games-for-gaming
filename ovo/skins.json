@@ -162,15 +162,6 @@
     "achievement": -1
   },
   {
-    "name": "Among Us",
-    "hidden": false,
-    "icon": "amongus.png",
-    "skin": "amongus",
-    "lang": "amongus",
-    "price": 50,
-    "achievement": -1
-  },
-  {
     "name": "French",
     "hidden": false,
     "icon": "french.png",
@@ -203,15 +194,6 @@
     "icon": "brazilian.png",
     "skin": "brazilian",
     "lang": "brazilian",
-    "price": 0,
-    "achievement": -1
-  },
-  {
-    "name": "Cool Math Games",
-    "hidden": false,
-    "icon": "cmg.png",
-    "skin": "cmg",
-    "lang": "cmg",
     "price": 0,
     "achievement": -1
   },
